@@ -19,6 +19,10 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
+    configurations {
+        all*.exclude module: 'bcpkix-jdk15on'
+    }
+
     signingConfigs {
         create("release") {
             // APK signing keystore configuration provided by environment variables:
@@ -73,6 +77,9 @@ dependencies {
     implementation 'com.google.android.material:material:1.7.0'
     implementation 'org.bouncycastle:bcprov-jdk18on:1.72'
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.4'
+
+    //custom for android <= 6.0
+    implementation 'org.bouncycastle:bcpkix-jdk15on:1.70'
 
     // Testing-only dependencies
     androidTestImplementation "org.jetbrains.kotlin:kotlin-stdlib:1.8.0"

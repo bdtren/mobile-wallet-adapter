@@ -22,8 +22,16 @@ import com.google.android.material.snackbar.Snackbar
 import com.solana.mobilewalletadapter.fakedapp.databinding.ActivityMainBinding
 import com.solana.mobilewalletadapter.fakedapp.usecase.MemoTransactionVersion
 import kotlinx.coroutines.launch
+import org.bouncycastle.jce.provider.BouncyCastleProvider
+import java.security.Security
 
 class MainActivity : AppCompatActivity() {
+    companion object {
+        init {
+            Security.removeProvider("BC")//first remove default os provider
+            Security.insertProviderAt( BouncyCastleProvider (), 1)//add new provider
+        }
+    }
     private val viewModel: MainViewModel by viewModels()
     private lateinit var viewBinding: ActivityMainBinding
     private val activityResultLauncher: ActivityResultLauncher<Intent> =

@@ -246,6 +246,7 @@ public abstract class MobileWalletAdapterSessionCommon implements MessageReceive
             return kpg.generateKeyPair();
         } catch (NoSuchAlgorithmException | InvalidParameterSpecException |
                 InvalidAlgorithmParameterException e) {
+            Log.i(TAG, "generateECP256KeyPair: " + e);
             throw new UnsupportedOperationException("Failed generating an EC P-256 keypair for ECDH", e);
         }
     }
